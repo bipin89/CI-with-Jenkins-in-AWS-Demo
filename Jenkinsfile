@@ -4,14 +4,14 @@ pipeline {
         skipStagesAfterUnstable()
     }
     stages {
-        stage('Compile') { 
+        stage('Build') { 
             steps { 
-                sh 'mvn compile' 
+                sh 'mvn clean package' 
             }
         }
         stage('Test'){
             steps {
-                sh 'make check'
+                sh 'mvn test'
                 junit 'reports/**/*.xml' 
             }
         }
