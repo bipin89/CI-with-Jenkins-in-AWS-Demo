@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Compile') { 
             steps { 
-                mvn 'compile' 
+                maven 'compile' 
             }
         }
         stage('Test'){
