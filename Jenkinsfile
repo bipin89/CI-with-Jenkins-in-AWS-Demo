@@ -5,7 +5,7 @@ pipeline {
     
     stages {
         
-        stage('GIT PUll') { 
+        stage('SCM Pull') { 
             steps {
                 dir('artifacts'){
                     git url: 'https://github.com/edureka-git/DevOpsClassCodes.git'
