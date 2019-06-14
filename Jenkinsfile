@@ -1,10 +1,7 @@
-
 def customImage 
 pipeline {
     agent any
-    
-    stages {
-        
+      stages {
         stage('SCM Pull') { 
             steps {
                 dir('artifacts'){
@@ -13,14 +10,13 @@ pipeline {
                 
             }
         }
-        
         stage('Compile') { 
             steps {
              echo "Static code analysis"  
              dir('artifacts'){
                 withMaven(maven: 'mymaven') {
                   sh 'mvn compile' 
-                  
+               
              } 
              
             }
@@ -44,6 +40,7 @@ pipeline {
                 }
            }
        }
+    }
 
 /*        stage('Build and Sonarcube Analysis') { 
             steps {
@@ -108,6 +105,5 @@ pipeline {
 
          }  
      }   
-*/
 }
-
+*/
