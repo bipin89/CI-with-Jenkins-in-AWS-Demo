@@ -41,6 +41,7 @@ pipeline {
            }
        }
     }
+}
 
 /*        stage('Build and Sonarcube Analysis') { 
             steps {
