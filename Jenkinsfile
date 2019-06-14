@@ -66,9 +66,8 @@ pipeline {
             }
         }
     }
-  }
-}
-/*    stage('Build image') { 
+  
+    stage('Build image') { 
         //agent { label 'docker' }
       steps {
              echo "Build the docker file"  
@@ -108,4 +107,3 @@ pipeline {
          }  
      }   
 }
-*/
