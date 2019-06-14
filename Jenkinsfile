@@ -13,6 +13,19 @@ pipeline {
                 
             }
         }
+        
+        stage('Compile') { 
+            steps {
+             echo "Static code analysis"  
+             dir('artifacts'){
+                withMaven(maven: 'mymaven') {
+                  sh 'mvn compile' 
+                  
+             } 
+             
+            }
+        }
+    }
         stage('Test') { 
             steps {
              echo "Testing"  
@@ -32,7 +45,7 @@ pipeline {
            }
        }
 
-        stage('Build and Sonarcube Analysis') { 
+/*        stage('Build and Sonarcube Analysis') { 
             steps {
              echo "Static code analysis"  
              dir('artifacts'){
@@ -96,3 +109,4 @@ pipeline {
          }  
      }   
 }
+*/
