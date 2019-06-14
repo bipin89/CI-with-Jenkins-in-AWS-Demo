@@ -40,8 +40,7 @@ pipeline {
                 }
            }
        }
-    }
-}
+    
 
 /*        stage('Build and Sonarcube Analysis') { 
             steps {
@@ -53,8 +52,8 @@ pipeline {
              
             }
         }
-    }
-    stage('Compile & Package') { 
+    } */
+    stage('Package') { 
             steps {
              echo "Static code analysis"  
              dir('artifacts'){
@@ -67,7 +66,9 @@ pipeline {
             }
         }
     }
-    stage('Build image') { 
+  }
+}
+/*    stage('Build image') { 
         //agent { label 'docker' }
       steps {
              echo "Build the docker file"  
