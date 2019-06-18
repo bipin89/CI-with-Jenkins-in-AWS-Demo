@@ -1,4 +1,4 @@
-def customImage 
+def dockerImage 
 pipeline {
     environment {
     registry = "bipin89/addressbook"
@@ -79,8 +79,8 @@ pipeline {
                 
                  sh 'cp ${JENKINS_HOME}/workspace/${JOB_NAME}/artifacts/target/addressbook.war .'
                  dockerImage = docker.build registry + ":$BUILD_NUMBER"
-                 //customImage = docker.build("bipin89/addressbook:${BUILD_NUMBER}")
-                 echo customImage
+                
+                 echo dockerImage
                 
              }
         }
@@ -93,9 +93,7 @@ pipeline {
                  docker.withRegistry( '', registryCredential ) {
                  dockerImage.push()
                  }
-                 //docker.withRegistry( '', 'DOCKERHUBLOGIN' ) {
-                 //          customImage.push()
-               // }
+                 
              }
         }
     }
