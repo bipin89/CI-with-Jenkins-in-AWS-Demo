@@ -42,17 +42,17 @@ pipeline {
        }
     
 
-/*        stage('Build and Sonarcube Analysis') { 
+        stage('Build and Sonarcube Analysis') { 
             steps {
              echo "Static code analysis"  
              dir('artifacts'){
                 withMaven(maven: 'mymaven') {
-                 // sh 'mvn sonar:sonar -Dsonar.projectKey=devops-casestudy -Dsonar.host.url=http://35.200.254.182:9000 -Dsonar.login=571a21bbd37e72fe471a9dd4f5953b9a226b6744'                 }
+                 sh 'mvn sonar:sonar -Dsonar.projectKey=devops-casestudy -Dsonar.host.url=http://34.93.62.28:9000 -Dsonar.login=38f9a5b2d74275db5675638dae186d5fe6c37d23'   
              } 
              
             }
         }
-    } */
+    } 
     stage('Package') { 
             steps {
              echo "Static code analysis"  
