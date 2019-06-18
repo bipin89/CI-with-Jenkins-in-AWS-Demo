@@ -1,5 +1,10 @@
 def customImage 
 pipeline {
+    environment {
+    registry = "bipin89/addressbook"
+    registryCredential = 'dockerhub'
+    dockerImage = ''
+  }
     agent any
       stages {
         stage('SCM Pull') { 
@@ -10,9 +15,8 @@ pipeline {
                 
             }
         }
-        stage('Compile') { 
-            steps {
-             echo "Static code analysis"  
+        stage('Project Compile') { 
+            steps {  
              dir('artifacts'){
                 withMaven(maven: 'mymaven') {
                   sh 'mvn compile' 
@@ -22,7 +26,7 @@ pipeline {
             }
         }
     }
-        stage('Test') { 
+        stage('Unit Testing') { 
             steps {
              echo "Testing"  
              dir('artifacts'){
@@ -42,12 +46,12 @@ pipeline {
        }
     
 
-        stage('Build and Sonarcube Analysis') { 
+        stage('Sonarcube Analysis') { 
             steps {
              echo "Static code analysis"  
              dir('artifacts'){
                 withMaven(maven: 'mymaven') {
-                 sh 'mvn sonar:sonar -Dsonar.projectKey=devops-casestudy -Dsonar.host.url=http://34.93.62.28:9000 -Dsonar.login=38f9a5b2d74275db5675638dae186d5fe6c37d23'   
+                 sh 'mvn sonar:sonar -Dsonar.projectKey=CI-with-Jenkins-in-AWS-Demo -Dsonar.host.url=http://34.93.62.28:9000 -Dsonar.login=38f9a5b2d74275db5675638dae186d5fe6c37d23'   
              } 
              
             }
@@ -55,10 +59,10 @@ pipeline {
     } 
     stage('Package') { 
             steps {
-             echo "Static code analysis"  
+             echo "Generating WAR file"  
              dir('artifacts'){
                 withMaven(maven: 'mymaven') {
-                 // sh 'mvn compile' 
+                  
                   sh 'mvn package'  
                
              } 
@@ -67,14 +71,15 @@ pipeline {
         }
     }
   
-    stage('Build image') { 
+    stage('Custom Image Build') { 
         //agent { label 'docker' }
       steps {
              echo "Build the docker file"  
              script{
                 
                  sh 'cp ${JENKINS_HOME}/workspace/${JOB_NAME}/artifacts/target/addressbook.war .'
-                 customImage = docker.build("bipin89/addressbook:${BUILD_NUMBER}")
+                 dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                 //customImage = docker.build("bipin89/addressbook:${BUILD_NUMBER}")
                  echo customImage
                 
              }
@@ -85,10 +90,12 @@ pipeline {
       steps {
              echo "Build the docker file"  
              script{
-                 
-                 docker.withRegistry( '', 'DOCKERHUBLOGIN' ) {
-                           customImage.push()
-                }
+                 docker.withRegistry( '', registryCredential ) {
+                 dockerImage.push()
+                 }
+                 //docker.withRegistry( '', 'DOCKERHUBLOGIN' ) {
+                 //          customImage.push()
+               // }
              }
         }
     }
