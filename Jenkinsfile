@@ -88,7 +88,7 @@ pipeline {
     stage('Deploy Image') { 
         //agent { label 'docker' }
       steps {
-             echo "Build the docker file"  
+             echo "Pushing to DockerHub"  
              script{
                  docker.withRegistry( '', registryCredential ) {
                  dockerImage.push()
