@@ -2,15 +2,16 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: addressbookdeployment
-spec: 
+spec:
   replicas: 2
-  template: 
+  template:
     metadata:
-      labels: 
+      labels:
         app: addressbook
-    spec: 
-      containers: 
-      - name: addressbook-conatiner
-        image: bipin89/addressbook:latest
+    spec:
+      containers:
+      - name: addressbook-container
+        image: bipin89/addressbook:14
+        imagePullPolicy: Always
         ports:
         - containerPort: 8080
