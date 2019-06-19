@@ -1,4 +1,4 @@
-piVersion: extensions/v1beta1
+apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: addressbookdeployment
@@ -10,7 +10,7 @@ spec:
         app: addressbook
     spec: 
       containers: 
-      - name: addressbook_conatiner
+      - name: addressbook-conatiner
         image: bipin89/addressbook:latest
         ports:
         - containerPort: 8080
