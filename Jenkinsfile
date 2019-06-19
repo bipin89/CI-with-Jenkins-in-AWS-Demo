@@ -3,7 +3,7 @@ pipeline {
     environment {
     registry = "bipin89/addressbook"
     registryCredential = 'dockerhub'
-    //dockerImage = ''
+    dockerImage = ''
   }
     agent any
       stages {
@@ -80,7 +80,7 @@ pipeline {
                  sh 'cp ${JENKINS_HOME}/workspace/${JOB_NAME}/artifacts/target/addressbook.war .'
                  dockerImage = docker.build registry + ":$BUILD_NUMBER"
                 
-                 echo dockerImage
+                 //echo dockerImage
                 
              }
         }
