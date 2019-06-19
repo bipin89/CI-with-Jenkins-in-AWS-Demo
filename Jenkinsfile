@@ -51,7 +51,7 @@ pipeline {
              echo "Static code analysis"  
              dir('artifacts'){
                 withMaven(maven: 'mymaven') {
-                 sh 'mvn sonar:sonar -Dsonar.projectKey=CI-with-Jenkins-in-AWS-Demo -Dsonar.host.url=http://34.93.62.28:9000 -Dsonar.login=38f9a5b2d74275db5675638dae186d5fe6c37d23'   
+                 sh 'mvn sonar:sonar -Dsonar.projectKey=CI-with-Jenkins-in-AWS-Demo -Dsonar.host.url=http://34.93.62.28:9000 -Dsonar.login=7f07d49b0c96adcc7a75a354aea2b5dd25e9ed44'   
              } 
              
             }
