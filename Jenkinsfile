@@ -3,7 +3,7 @@ pipeline {
     environment {
     registry = "bipin89/addressbook"
     registryCredential = 'dockerhub'
-    dockerImage = ''
+    //dockerImage = ''
   }
     agent any
       stages {
