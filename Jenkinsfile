@@ -102,10 +102,10 @@ pipeline {
     post {  
           
        success {
-        mail from: "bipinrajan89@gmail.com"
-	     to: "bipin.rajan@delta.com",
-             subject: "Pipeline Success: ${currentBuild.fullDisplayName}",
-             body: "Build Result : Success<br> Jobname: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> URL of the build: ${env.BUILD_URL}"
+        mail to: "bipin.rajan@delta.com", 
+		from: "bipinrajan89@gmail.com", 
+		subject: "Pipeline Success: ${currentBuild.fullDisplayName}", 
+		body: "Build Result : Success<br> Jobname: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> URL of the build: ${env.BUILD_URL}"
     }
  
          failure {  
