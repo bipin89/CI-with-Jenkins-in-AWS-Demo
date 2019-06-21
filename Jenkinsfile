@@ -101,10 +101,13 @@ pipeline {
 }
     post {  
           
-         success {  
-             echo "Success Notification" 
-             mail body: "Build Result : Success<br> Jobname: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> URL of the build: ${env.BUILD_URL}", charset: 'UTF-8', from: "bipinrajan89@gmail.com",  mimeType: 'text/html', replyTo: '', subject: "Success CI: Project name -> ${env.JOB_NAME}", to: "bipin.rajan@delta.com";  
-         }  
+       success {
+        mail from: "bipinrajan89@gmail.com"
+	     to: "bipin.rajan@delta.com",
+             subject: "Pipeline Success: ${currentBuild.fullDisplayName}",
+             body: "Build Result : Success<br> Jobname: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> URL of the build: ${env.BUILD_URL}"
+    }
+ 
          failure {  
             echo "Failure Notification"
             mail body: "Build Result : Failure<br> Jobname: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> URL of the build: ${env.BUILD_URL}", charset: 'UTF-8', from: "bipinrajan89@gmail.com", mimeType: 'text/html', replyTo: '', subject: "ERROR CI: Project name -> ${env.JOB_NAME}", to: "bipin.rajan@delta.com";  
