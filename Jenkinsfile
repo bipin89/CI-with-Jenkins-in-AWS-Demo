@@ -72,7 +72,6 @@ pipeline {
     }
   
     stage('Custom Image Build') { 
-        //agent { label 'docker' }
       steps {
              echo "Build the docker file"  
              script{
@@ -91,11 +90,16 @@ pipeline {
              script{
                  docker.withRegistry( '', registryCredential ) {
                  dockerImage.push()
-		 sh "docker rmi $registry:$BUILD_NUMBER"
                  }
                  
              }
         }
+	    post {
+                always {
+                    sh "docker rmi $registry:$BUILD_NUMBER"
+
+                }
+           }
     }
 
 }
