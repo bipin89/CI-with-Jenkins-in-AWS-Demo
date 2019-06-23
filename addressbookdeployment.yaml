@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: addressbook-container
-        image: bipin89/addressbook:14
+        image: bipin89/addressbook:27
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
