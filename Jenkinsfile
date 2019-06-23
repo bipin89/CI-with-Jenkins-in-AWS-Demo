@@ -77,7 +77,7 @@ pipeline {
              script{
                 
                  sh 'cp ${JENKINS_HOME}/workspace/${JOB_NAME}/artifacts/target/addressbook.war .'
-                 dockerImage = docker.buil registry + ":$BUILD_NUMBER"
+                 dockerImage = docker.build registry + ":$BUILD_NUMBER"
                 
                
              }
